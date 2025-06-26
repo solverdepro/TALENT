@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ video.title }}</title>
+</head>
+<body>
+    <h2>{{ video.title }}</h2>
+
+    <!-- Video player -->
+    <video width="320" height="240" controls>
+        <source src="{{ video.video_file.url }}" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <!-- Like button and like count -->
+    <p>Likes: {{ video.likes }}</p>
+    <form action="{% url 'like_video' video.id %}" method="post">
+        {% csrf_token %}
+        <button type="submit">Like</button>
+    </form>
+
+    <!-- Comments Section -->
+    <h3>Comments</h3>
+    <ul>
+        {% for comment in comments %}
+            <li>
+                <strong>{{ comment.user.username }}:</strong> {{ comment.content }}
+                <br><small>{{ comment.created_at }}</small>
+            </li>
+        {% empty %}
+            <li>No comments yet. Be the first to comment!</li>
+        {% endfor %}
+    </ul>
+
+    <!-- Comment Form -->
+    <h4>Add a Comment</h4>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Post Comment</button>
+    </form>
+</body>
+</html>

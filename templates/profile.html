@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Profile</title>
+</head>
+<body>
+    <h2>Your Profile</h2>
+    <p>Username: {{ request.user.username }}</p>
+    <p>Email: {{ request.user.email }}</p>
+    <a href="{% url 'edit_profile' %}">Edit Profile</a>
+    <br>
+    <h3>Your Uploaded Videos</h3>
+    <ul>
+        {% for video in request.user.video_set.all %}
+            <li><a href="{% url 'video_detail' video.id %}">{{ video.title }}</a></li>
+        {% empty %}
+            <li>No videos uploaded.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

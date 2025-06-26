@@ -1,0 +1,126 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>University Talent Promotion System</title>
+
+    <link href="{% static 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css'%}" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+
+    <style>
+/* Hero Section */
+.hero {
+    background: url("{% static 'img/images/talent2.jpg' %}") no-repeat center center;
+    background-size: cover;
+    color: white;
+    padding: 150px 20px;
+    text-align: center;
+    position: relative;
+}
+    </style>
+</head>
+<body>
+
+<header>
+    <img src="{% static 'img/images/logo (2).PNG'%}" alt="Platform Logo">
+    <nav>
+        <a href="{% url 'index' %}"><i class="fas fa-home"></i>Home</a>
+        <!-- <a href="{%url 'news' %}"><i class="fas fa-user"></i>News</a>
+        <a href="{% static '#contact'%}"><i class="fas fa-envelope"></i>Contact Us</a> -->
+        <a href="{% url 'login'%}"><i class="fas fa-sign-in-alt"></i>login</a>
+    </nav>
+    
+</header>
+
+<div class="main-content">
+    <!-- Hero Section -->
+    <div class="hero" id="home">
+        <h1>Promote Your Talents to the World</h1>
+        <p>Showcase your unique abilities and connect with a community that helps you grow.</p>
+       <a href="{% url 'register'%}"> <button>Get Started</button></a>
+    </div>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="feature-box">
+            <img src="{% static 'img/images/challenges.png'%}" alt="Video Challenges">
+            <h3>Video Challenges</h3>
+            <p>Participate in unique challenges and showcase your talent in front of the audience.</p>
+        </div>
+        <div class="feature-box">
+            <img src="{% static 'img/images/friends.png'%}" alt="Awards">
+            <h3>Comunity Networking</h3>
+            <p>Expand your connections and collaborate with talented individuals across universities.</p>
+        </div>
+        <div class="feature-box">
+            <img src="{% static 'img/images/calender.jpg'%}" alt="Awards">
+            <h3>Exclusive Events</h3>
+        <p>Get access to exclusive events, both physical and virtual, to showcase your talent.</p>
+    </div>
+    </section>
+
+    <!-- About Us Section -->
+    <section class="about-section" id="about">
+        <h2>About Us</h2>
+        <p>Our platform is dedicated to helping university students showcase their talents and connect with a broader audience. We provide tools and opportunities for students to excel in their fields, be it dancing, comedy, singing, or any other unique skill. Our mission is to support and promote student talents, fostering growth and recognition.</p>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+        <div>
+            <h3>100+</h3>
+            <p>Events Held</p>
+        </div>
+        <div>
+            <h3>500+</h3>
+            <p>Talented Students</p>
+        </div>
+        <div>
+            <h3>50+</h3>
+            <p>Sponsors</p>
+        </div>
+    </section>
+
+   <!-- Contact Section -->
+   <section class="contact-section" id="contact" style="background-color: #f5f7f9; padding: 60px 20px;">
+    <div style="text-align: center; margin-bottom: 20px;">
+        <h3 style="color: orange; font-size: 24px;">Contact Us.</h3>
+        <div style="display: flex; justify-content: space-around; flex-wrap: wrap;">
+            <!-- Left - Contact Form -->
+            <div style="flex: 1; margin-right: 20px;">
+                <h3 style="margin-bottom: 10px;">Reach Out</h3>
+                <p style="margin-bottom: 20px;">Feel free to contact us with any inquiries or feedback you may have.</p>
+                <form>
+                    <input type="text" placeholder="Name" required style="width: 100%; padding: 10px; margin-bottom: 10px;">
+                    <input type="email" placeholder="Email" required style="width: 100%; padding: 10px; margin-bottom: 10px;">
+                    <textarea placeholder="Message" required style="width: 100%; padding: 10px; margin-bottom: 10px;"></textarea>
+                    <button type="submit" style="padding: 10px 20px; background-color: orange; color: white; border: none;">Submit</button>
+                </form>
+            </div>
+
+            <!-- Right - Contact Details -->
+            <div style="flex: 1;">
+                <h3 style="margin-bottom: 10px;">Contact Information</h3>
+                <p><i class="fas fa-envelope"></i> support@talentpromotion.com</p>
+                <p><i class="fas fa-phone"></i> +123 456 7890</p>
+                <p><i class="fas fa-map-marker-alt"></i> Buni Hub, Dares salaam, Tanzania</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <h3>&copy; 2024 University Talent Promotion System</h3>
+    <p><a href="{% static '#home'%}">Home</a> | <a href="{% static '#about'%}">About Us</a> | <a href="{% static '#contact'%}">Contact Us</a> | <a href="{% static 'login.html'%}">login</a></p>
+    <div class="social-media">
+        <a href="{% static 'https://facebook.com'%}" target="_blank" class="fab fa-facebook"></a>
+        <a href="{% static 'https://twitter.com'%}" target="_blank" class="fab fa-twitter"></a>
+        <a href="{% static 'https://instagram.com'%}" target="_blank" class="fab fa-instagram"></a>
+        <a href="{% static 'https://linkedin.com' %}" target="_blank" class="fab fa-linkedin"></a>
+    </div>
+</footer>
+
+</body>
+</html>

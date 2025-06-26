@@ -1,0 +1,69 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>uploaded videos</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'css/vid.css' %}">
+
+
+    <img src="{% static 'img/images/logo (2).PNG'%}" alt="Platform Logo">
+    <nav>
+        <a href="{% url 'index' %}"><i class="fas fa-home"></i>Home</a>
+        <a href="{%url 'news' %}"><i class="fas fa-user"></i>News</a>
+        <a href="{% static '#contact'%}"><i class="fas fa-envelope"></i>Contact Us</a>
+        <a href="{% url 'login'%}"><i class="fas fa-sign-in-alt"></i>login</a>
+    </nav>
+</head>
+<body>
+
+<div class="container mt-5">
+    <h1 class="text-center mb-5">Uploaded Videos</h1>
+
+    <!-- Video List (Vertical Layout) -->
+    <div class="video-list">
+        {% for video in videos %}
+        <div class="card mb-4 shadow-sm">
+            <video class="card-img-top" controls>
+                <source src="{{ video.video_file.url }}" type="video/mp4">
+                Your browser does not support the video tag.
+            </video><br><br>
+            <div class="card-body mt-3 mb-3">
+                <a href="{% url 'video_detail' video.id %}">{{ video.title }}</a>
+                <p>Likes: {{ video.likes }}</p>
+                <!-- <p class="card-text"><small class="text-muted">Uploaded on {{ video.uploaded_at }}</small></p>
+                <a href="{{ video.file.url }}" class="btn btn-primary" download>Download Video</a> -->
+            </div>
+        </div>
+        {% empty %}
+        <p>No videos available at the moment.</p>
+        {% endfor %}
+    </div>
+</div>
+
+<!-- JavaScript to ensure only one video is played at a time -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var videos = document.querySelectorAll('.video-player');
+
+        videos.forEach(function(video) {
+            video.addEventListener('play', function() {
+                videos.forEach(function(otherVideo) {
+                    if (otherVideo !== video) {
+                        otherVideo.pause();
+                    }
+                });
+            });
+        });
+    });
+</script>
+
+<!-- Bootstrap JS and dependencies -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

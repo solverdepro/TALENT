@@ -1,0 +1,148 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Form</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body, html {
+            height: 100%;
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-image: url('images/LOGIN background.jpg'); /* Replace with actual image path */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .login-container {
+            background-color: rgba(0, 0, 0, 0.5); /* Dark transparent overlay */
+            padding: 40px;
+            border-radius: 10px;
+            width: 320px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+            text-align: center;
+        }
+
+        h2 {
+            color: #fff;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            color: #f2f2f2;
+            font-size: 14px;
+            margin-bottom: 30px;
+        }
+
+        label {
+            color: #fff;
+            font-size: 14px;
+            display: block;
+            text-align: left;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"], input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        input[type="text"]:focus, input[type="password"]:focus {
+            border-color: orange;
+            outline: none;
+        }
+
+        .options {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            color: #fff;
+            margin-bottom: 20px;
+        }
+
+        .options a {
+            color: orange;
+            text-decoration: none;
+        }
+
+        .options a:hover {
+            text-decoration: underline;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: orange;
+            color: #fff;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: darkorange;
+        }
+
+        .signup {
+            color: #fff;
+            margin-top: 20px;
+            font-size: 12px;
+        }
+
+        .signup a {
+            color: orange;
+            text-decoration: none;
+        }
+
+        .signup a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .login-container {
+                width: 90%;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h2>Log in</h2>
+        <p>Log in to your account to continue.</p>
+        <form action="#" method="post">
+            {% csrf_token %}
+            <label for="username">username</label>
+            <input type="text" name="username" placeholder="Enter your username">
+
+            <label for="password">password</label>
+            <input type="password" name="password" placeholder="Enter your password">
+
+            <button type="submit">continue</button>
+
+            <div class="signup">
+                <span>i don't have account</span> 
+                <a href="{% url 'register'%}">Sign Up</a>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

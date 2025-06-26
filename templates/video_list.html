@@ -1,0 +1,106 @@
+{%load static%}
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="{% static 'css/style_video.css'%}">
+    <link rel="stylesheet" href="{% static 'js/videoo.js'%}">
+    <title>Uploaded Videos</title>
+</head>
+<body>
+    <nav class="sidebar">
+        <div class="logo">
+            <img src="{% static 'logo.png'%}" alt="Talent Promoters Logo">
+        </div>
+        <ul class="nav-links">
+            <li><a href="{% static '#'%}">home</a></li>
+            <li><a href="{% static '#'%}">news</a></li>
+            <li><a href="{% static '#'%}">events</a></li>
+            <li><a href="{% static '#'%}">challenges</a></li>
+        </ul>
+        <a href="{% static '#'%}" class="logout">LOGOUT</a>
+    </nav>
+            <!-- Main Content Area -->
+            <div class="main-content">
+                <!-- Search Bar -->
+                <div class="search-bar">
+                    <input type="text" placeholder="Search events, challenges and users">
+                    <button>🔍</button>
+                </div>
+    <h2>Uploaded Videos</h2>
+    <ul>
+        {% for video in videos %}
+            <li>
+                <h3>{{ video.title }}</h3>
+                <video class="video-player" width="320" height="240" controls>
+                    <source src="{{ video.video_file.url }}" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video><br>
+                <a href="{% url 'video_detail' video.id %}">{{ video.title }}</a>
+                <p>Likes: {{ video.likes }}</p>
+            </li>
+        {% empty %}
+            <li>No videos have been uploaded yet.</li>
+        {% endfor %}
+    </ul>
+    
+    <div class="main-content">
+        <div class="search-bar">
+            <input type="text" placeholder="Search events, challenges and users">
+            <button>🔍</button>
+        </div>
+
+        <aside class="trending">
+            <!-- Trending Section -->
+            <aside class="trending">
+                <h2>Trending's</h2>
+                <div class="trend">
+                    <img src="{% static 'trend1.png'%}" alt="Trend Image">
+                    <p>Lorem ipsum dolor sit amet, consec</p>
+                </div>
+                <div class="trend">
+                    <img src="{% static 'trend2.png'%}" alt="Trend Image">
+                    <p>Lorem ipsum dolor sit amet, consec</p>
+                </div>
+
+
+            <!-- Leaderboard Section -->
+            <div class="leaderboard">
+                <h3>Leaderboard</h3>
+                <div class="leader">
+                    <span>Pomaline Sunny</span>
+                    <button>Following</button>
+                </div>
+                <div class="leader">
+                    <span>Pomaline Sunny</span>
+                    <button>Following</button>
+                </div>
+            </div>
+</aside>
+</div>
+ 
+
+
+
+
+
+
+    <!-- Updated JavaScript to stop other videos when one is played -->
+    <script>
+        // Select all video elements on the page
+        const videos = document.querySelectorAll('.video-player');
+
+        // Iterate over each video and attach an event listener
+        videos.forEach(currentVideo => {
+            currentVideo.addEventListener('play', function() {
+                // Pause all other videos
+                videos.forEach(otherVideo => {
+                    if (otherVideo !== currentVideo && !otherVideo.paused) {
+                        otherVideo.pause();
+                        otherVideo.currentTime = 0;  // Reset time for cleaner experience
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
